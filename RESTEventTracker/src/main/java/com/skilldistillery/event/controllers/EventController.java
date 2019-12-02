@@ -66,6 +66,7 @@ public class EventController {
 			if (event == null) {
 				resp.setStatus(404);
 			}
+			resp.setStatus(200);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(400);

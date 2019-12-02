@@ -1,4 +1,4 @@
-package com.skilldistillery.events;
+package com.skilldistillery.event;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
