@@ -34,14 +34,14 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Event update(int id, Event event) {
 		Event update = repo.findById(id);
-//		if (update != null) {
+		if (update != null) {
 			update.setName(event.getName());
 			update.setDescription(event.getDescription());
 			update.setLocation(event.getLocation());
 			update.setDate(event.getDate());
 			return repo.saveAndFlush(update);
-//		} 
-//		return update;
+		} 
+		return update;
 	}
 	
 	@Override
