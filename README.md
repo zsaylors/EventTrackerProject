@@ -46,14 +46,6 @@ The purpose of the event tracker was to combine a JPA project with a RESTfull in
 
 </table>
 
-| HTTP Method   | URI               | Purpose       |
-| ------------- |------------------ | ------------- |
-| GET           | /api/events       | Lists all launches |
-| GET           | /api/event/{id}   | Lists single event by id |
-| POST          | /api/post         | User creates/adds launch |
-| PUT           | /api/event/{id}   | Updates event |
-| DELETE        | /api/event/{id}   | Deletes event |
-
 
 ## Developer Instructions
 The project does not have a front end, and therefore is not on AWS.  However, the full project and database may be downloaded from github.  Download a zip file to known location and load it in an IDE such as eclipse.  From an IDE the user can run the `RESTEventTracker` as a Spring Boot App from `RESTEventTracker > src/main/java > com.skilldistillery.event > EventRestApplication.java`.  When the program is run a user may go into Postman and perform full crud via the endpoints shown above.  For example, to create a launch event, the user would set Postman to `POST` and the address to `localhost:8093/api/post` and put in valid JSON.  By doing so, the program will add the event object and set the id to the next highest available (regardless of whether the user chooses the id).  Following the same paths as in the REST Endpoints section, the user may also view, update, and delete event objects.
