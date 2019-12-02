@@ -1,5 +1,7 @@
 # Event Tracker
 
+http://3.132.170.184:8080/RESTEventTracker/api/events
+
 ## Overview
 
 The purpose of the event tracker was to combine a JPA project with a RESTfull interactions with a database.  For my project I mad a database with rocket launches from NASA, SpaceX, etc.  The database contains a launch name, location, description, and date.  A user may read, create, update, and delete from the database.
