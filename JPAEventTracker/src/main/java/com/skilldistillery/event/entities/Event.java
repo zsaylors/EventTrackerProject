@@ -1,5 +1,7 @@
 package com.skilldistillery.event.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +19,14 @@ public class Event {
 	private String name;
 	private String location;
 	private String description;
-	private String date;
+	private LocalDate date;
 	
 	
 	// C O N S T R U C T O R S
 	
 	public Event() {}
 	
-	public Event(int id, String name, String location, String description, String date) {
+	public Event(int id, String name, String location, String description, LocalDate date) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,11 +68,11 @@ public class Event {
 		this.description = description;
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -79,6 +81,5 @@ public class Event {
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", location=" + location + ", description=" + description
 				+ ", date=" + date + "]";
-	}
-	
+	}	
 }

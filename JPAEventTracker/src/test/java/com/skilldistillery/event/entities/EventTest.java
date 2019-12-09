@@ -2,6 +2,8 @@ package com.skilldistillery.event.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -30,7 +32,7 @@ class CategoryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		event = em.find(Event.class, 4);
+		event = em.find(Event.class, 1);
 	}
 
 	@AfterEach
@@ -45,7 +47,7 @@ class CategoryTest {
 	
 	@Test
 	void test2() {
-		assertEquals("December 4, 2019", event.getDate());
+		assertEquals(LocalDate.of(2019, 12, 04), event.getDate());
 	}
 	
 	@Test

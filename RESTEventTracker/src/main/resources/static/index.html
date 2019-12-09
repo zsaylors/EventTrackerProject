@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<title>Event Tracker</title>
+	<script type="text/javascript" src="js/script.js"></script>
+  </head>
+  <body style="background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5)), url('https://media.nbcmiami.com/2019/09/spacex-GettyImages-1181721707.jpg');     background-size: cover;
+	background-position: center;
+    background-repeat: no-repeat;
+  	background-attachment: fixed;">
+
+	<div class="container">
+		<h1>Rocket Tracker</h1>
+	</div>
+	<br>
+	
+	<div class="container bg-light" style="margin-bottom: 10px; border-radius: 10px; border: 1px">
+	<h6>Next Rocket Launch:</h6>
+	<div id="nextEventDiv" style="color: blue"></div>
+	</div>
+	
+	<div id="tableDiv"></div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col bg-light" style="padding-bottom: 20px; border-radius:10px; margin: 5px;">
+				<strong>Create Event</strong>
+				<form name="createEvent">
+					<label for="addName">Name:</label><br>
+					<input type="text" name="name" value="" id="addName"><br>
+					<label for="addLoc">Location:</label><br>
+					<input type="text" name="location" value="" id="addLoc"><br>
+					<label for="addDesc">Description:</label><br>
+					<input type="text" name="description" value="" id="addDesc"><br>
+					<label for="addDate">Date:</label><br>
+					<input type="date" name="date" value="" id="addDate" required><br><br>
+					<button name="addEvent" class="btn btn-success">Add Event</button>
+				</form>
+			</div>
+			<div class="col bg-light" style="padding-bottom: 20px; border-radius:10px; margin: 5px;">
+				<strong>Update or Delete Event</strong>
+				<div id="update" style="visibility: hidden;">
+					<form name="updateEvent">
+						<input type="hidden" name="idUpdate" id="updateName">
+						<label for="updateName">Name:</label><br>
+						<input type="text" name="nameUpdate" id="updateName"><br>
+						<label for="updateLoc">Location:</label><br>
+						<input type="text" name="locationUpdate" id="updateLoc"><br>
+						<label for="updateDesc">Description:</label><br>
+						<input type="text" name="descriptionUpdate" id="updateDesc"><br>
+						<label for="updateDate">Date:</label><br>
+						<input type="date" name="dateUpdate" id="updateDate" required><br><br>
+						<button name="putEvent" class="btn btn-warning">Update Event</button>
+					</form>
+				</div>
+				<div id="delete" style="visibility: hidden;">
+				<br>
+					<form name="deleteForm">
+						<input type="hidden" name="idDel">
+						<button name="deleteEvent" class="btn btn-danger">Delete Event</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
