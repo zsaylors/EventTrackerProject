@@ -1,6 +1,6 @@
 # Event Tracker
 
-http://3.132.170.184:8080/RESTEventTracker/api/events
+http://3.132.170.184:8080/RESTEventTracker/
 
 ## Overview
 
