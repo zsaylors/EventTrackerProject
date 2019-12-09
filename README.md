@@ -74,7 +74,13 @@ This was a short project, and I unfortunately did not have much time to explore 
 I also struggled with the update portion, but that was mostly do to the silly mistake on my part.  I was trying to update an object that I had just created.  That was the second time I had done that, so hopefully that lesson is learned for good.
 
 ### Week 2:
-The biggest challenge of this project was getting the table to update.  I eventually went with reloading the page when the create, update, or delete button was pushed.  In order to update the table, I would have had to delete the current row and add a new one.  It can be done, but the window refresh was simpler.  In addition to expanding knowledge XMLHttpRequest()'s, I learned a few new JavaScript functions involving dates.
+The biggest challenge of this project was getting the table to update.  I eventually went with reloading the page when the create, update, or delete button was pushed. The biggest challenge was getting the row to update without having to refresh the page.  All it took was a simple while loop similar to:
+```
+while (dataDiv.firstElementChild) {
+		dataDiv.removeChild(dataDiv.firstElementChild);
+}
+```
+In addition to expanding knowledge XMLHttpRequest()'s, I learned a few new JavaScript functions involving dates.
 
 ## Future Additions
 Agile will be learned in the upcoming week, so that will be applied later to the project.

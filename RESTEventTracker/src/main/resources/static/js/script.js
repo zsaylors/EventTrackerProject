@@ -9,23 +9,17 @@ function init() {
     document.createEvent.addEvent.addEventListener('click', function(event) {
     	event.preventDefault();
     	postEvent();
-    	window.location.reload();
     });
     
     document.updateEvent.putEvent.addEventListener('click', function(event) {
     	event.preventDefault();
     	updateEvent();
-//    	var a = document.querySelector('#eventList');
-//    	a.remove();
-//    	getEvent();
-    	window.location.reload();
     });
     
 
     document.deleteForm.deleteEvent.addEventListener('click', function(event) {
     	event.preventDefault();
     	removeEvent();
-    	window.location.reload();
     });
 }
 
@@ -50,7 +44,12 @@ function getEvent() {
 }
 
 function displayEvent(events) {
+	
 	let tableDiv = document.querySelector('#tableDiv');
+	
+	while (tableDiv.firstElementChild) {
+		tableDiv.removeChild(tableDiv.firstElementChild);
+	}
 	
 	// CREATES TABLE, TABLE HEAD / ROW
 	let table = document.createElement('table');
@@ -121,7 +120,7 @@ function postEvent() {
 		if (xhr.readyState === 4) {
 			if (xhr.status == 200 || xhr.status == 201) { 
 				var data = JSON.parse(xhr.responseText);
-				console.log(data);
+				getEvent();
 			} else {
 				console.log("POST request failed.");
 				console.error(xhr.status + ': ' + xhr.responseText);
@@ -147,7 +146,6 @@ function openDetailView(event) {
 }
 
 function putEvent(event) {
-	console.log(event);
 	updateDiv = document.querySelector('#update');
 	updateDiv.style.cssText = 'visibility: visible';
 	document.updateEvent.idUpdate.value = event.id;
@@ -160,9 +158,6 @@ function putEvent(event) {
 function updateEvent() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'api/event/' + document.updateEvent.idUpdate.value, true);
-	
-	console.log(document.updateEvent.nameUpdate.value);
-	console.log(document.updateEvent.idUpdate.value);
 
 	xhr.setRequestHeader("Content-type", "application/json"); 
 
@@ -170,7 +165,7 @@ function updateEvent() {
 		if (xhr.readyState === 4) {
 			if (xhr.status == 200 || xhr.status == 201) { 
 				var data = JSON.parse(xhr.responseText);
-				console.log(data);
+				getEvent()
 			} else {
 				console.log("PUT request failed.");
 				console.error(xhr.status + ': ' + xhr.responseText);
@@ -205,6 +200,7 @@ function removeEvent() {
 		if (xhr.readyState === 4 && xhr.status < 400) {
 //			var data = JSON.parse(xhr.responseText);
 //			displayEvent(data);
+			getEvent();
 		}
 
 		if (xhr.readyState === 4 && xhr.status >= 400) {
