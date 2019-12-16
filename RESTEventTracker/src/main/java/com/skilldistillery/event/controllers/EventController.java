@@ -21,20 +21,20 @@ import com.skilldistillery.event.entities.Event;
 import com.skilldistillery.event.services.EventService;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/events")
 @CrossOrigin({"*", "http://localhost:4209"})
 public class EventController {
 	
 	@Autowired
 	private EventService svc;
 
-	@GetMapping("events")
+	@GetMapping
 	@ResponseBody
 	public List<Event> allEvents() {
 		return svc.findAll();
 	}
 	
-	@GetMapping(path="event/{id}")
+	@GetMapping("{id}")
 	@ResponseBody
 	public Event getById(@PathVariable("id") Integer id, HttpServletResponse resp){
 		Event event = svc.findById(id);
@@ -44,7 +44,7 @@ public class EventController {
 		return event;
 	}
 	
-	@PostMapping("post")
+	@PostMapping
 	public Event create(@RequestBody Event event, HttpServletResponse resp, HttpServletRequest req)  {
 		try {
 			event = svc.addFilm(event);
@@ -61,7 +61,7 @@ public class EventController {
 	}
 	
 	
-	@PutMapping("event/{id}")
+	@PutMapping("{id}")
 	public Event update(@PathVariable("id") Integer id, @RequestBody Event event, HttpServletResponse resp)  {
 		try {
 			event = svc.update(id, event);
@@ -77,7 +77,7 @@ public class EventController {
 		return event;
 	}
 
-	@DeleteMapping(path = "event/{id}")
+	@DeleteMapping("{id}")
 	public void delete(@PathVariable("id") Integer id, HttpServletResponse resp) {
 		boolean deleted = svc.delete(id);
 		try {

@@ -1,0 +1,101 @@
+<div class="container text-center">
+  <br>
+  <h3>Event Tracker</h3>
+<br>
+</div>
+
+<!-- Aggregated Data -->
+<!-- <div class="container">
+  Days
+</div> -->
+
+<!--Table with events-->
+<div class="container bg-light rounded-lg" *ngIf="!selectedEvent">
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Date</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events" (click)="displaySingleEvent(event)">
+        <td>{{ event.name }}</td>
+        <td>{{ event.location }}</td>
+        <td>{{ event.date }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <!--Button to Add Event-->
+  <button *ngIf="!addEventBtn" class="btn btn-primary btn-block" (click)="addEventBtn = true">Create Event</button>
+   <!--Add event form-->
+  <div *ngIf="addEventBtn">
+    <form>
+      <div class="form-group">
+        <label for="name">Name:<br>
+          <input type="text" id="name" class="form-control" name="name" [(ngModel)]="newEvent.name">
+        </label>
+     </div>
+     <div class="form-group">
+        <label for="location">Location:<br>
+          <input type="text" id="location" class="form-control" name="location" [(ngModel)]="newEvent.location">
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:<br>
+          <input type="textbox" id="description" class="form-control" name="description" [(ngModel)]="newEvent.description">
+        </label>
+      </div>
+      <div class="form-group block">
+        <label for="date">Date:<br>
+          <input type="date" id="date" class="form-control" name="date" [(ngModel)]="newEvent.date">
+        </label>
+      </div>
+      <button class="btn btn-primary" (click)="createEvent(newEvent)">Add Event</button>
+      <button class="btn btn-secondary" (click)="addEventBtn = false">Cancel</button>
+
+    </form>
+  </div>
+</div>
+
+<!--Shows single event-->
+<div class="container bg-light rounded-lg" *ngIf="selectedEvent && !editEvent">
+  <h3>{{ selectedEvent.name }}</h3>
+  <p>{{ selectedEvent.location }}</p>
+  <p>{{ selectedEvent.description }}</p>
+  <p>{{ selectedEvent.date }}</p>
+
+  <button class="btn btn-danger" (click)="deleteEvent(selectedEvent.id)">Delete Event</button>
+  <button class="btn btn-warning" (click)="setEditEvent()">Edit</button>
+  <button class="btn btn-secondary" (click)="selectedEvent = null">Back</button>
+</div>
+
+<!-- Edit form -->
+<div class="container" *ngIf="editEvent">
+  <form>
+    <div class="form-group">
+      <label for="name">Name:<br>
+        <input type="text" id="name" class="form-control" name="name" [(ngModel)]="editEvent.name">
+      </label>
+   </div>
+   <div class="form-group">
+      <label for="location">Location:<br>
+        <input type="text" id="location" class="form-control" name="location" [(ngModel)]="editEvent.location">
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:<br>
+        <input type="textbox" id="description" class="form-control" name="description" [(ngModel)]="editEvent.description">
+      </label>
+    </div>
+    <div class="form-group block">
+      <label for="date">Date:<br>
+        <input type="date" id="date" class="form-control" name="date" [(ngModel)]="editEvent.date">
+      </label>
+    </div>
+    <button class="btn btn-warning" (click)="updateEvent(editEvent)">Update Event</button>
+    <button class="btn btn-secondary" (click)="editEvent = null">Cancel</button>
+  </form>
+</div>
+
