@@ -1,17 +1,27 @@
-<div class="container text-center">
+<div class="container text-center rounded-lg">
   <br>
-  <h3>Event Tracker</h3>
+  <h3 class="title">Rocket Tracker</h3>
 <br>
 </div>
 
 <!-- Aggregated Data -->
-<!-- <div class="container">
-  Days
-</div> -->
+<div class="alert alert-primary container" role="alert">
+  <div class="row">
+    <div class="col-lg-1 col-md-1 col-sm-12">
+     <img src="https://img.icons8.com/plasticine/100/000000/rocket.png" height="40px">
+   </div>
+   <div class="col-lg-11 col-md-11 col-sm-12 align-items-center">
+      <p *ngIf="daysToNextLaunch() === 0" class="nextEvent">Currently, there are no scheduled launches.</p>
+      <p *ngIf="daysToNextLaunch() === -1" class="nextEvent">Next launch is today!</p>
+      <p *ngIf="daysToNextLaunch() === 1" class="nextEvent">Next launch in tomorrow!</p>
+      <p *ngIf="daysToNextLaunch() > 1" class="nextEvent">Next launch in {{ daysToNextLaunch() }} days!</p>
+    </div>
+  </div>
+</div>
 
 <!--Table with events-->
-<div class="container bg-light rounded-lg" *ngIf="!selectedEvent">
-  <table class="table table-striped table-hover">
+<div class="container rounded-lg bg-light" *ngIf="!selectedEvent" style="padding-bottom: 5px;">
+  <table class="table table-hover">
     <thead>
       <th>Name</th>
       <th>Location</th>
@@ -21,7 +31,8 @@
       <tr *ngFor="let event of events" (click)="displaySingleEvent(event)">
         <td>{{ event.name }}</td>
         <td>{{ event.location }}</td>
-        <td>{{ event.date }}</td>
+        <td>{{ event.date }} <br>
+      </td>
       </tr>
     </tbody>
   </table>
@@ -61,10 +72,17 @@
 
 <!--Shows single event-->
 <div class="container bg-light rounded-lg" *ngIf="selectedEvent && !editEvent">
-  <h3>{{ selectedEvent.name }}</h3>
+  <h3 style="padding-top: 15px">{{ selectedEvent.name }}</h3>
+  <br>
+  <h6>Location:</h6>
   <p>{{ selectedEvent.location }}</p>
+  <hr>
+  <h6>Description:</h6>
   <p>{{ selectedEvent.description }}</p>
-  <p>{{ selectedEvent.date }}</p>
+  <hr>
+  <h6>When:</h6>
+  <p>{{ selectedEvent.date }} <br>
+    {{ timeToLaunch(selectedEvent) }}</p>
 
   <button class="btn btn-danger" (click)="deleteEvent(selectedEvent.id)">Delete Event</button>
   <button class="btn btn-warning" (click)="setEditEvent()">Edit</button>
@@ -72,7 +90,7 @@
 </div>
 
 <!-- Edit form -->
-<div class="container" *ngIf="editEvent">
+<div class="container bg-light" *ngIf="editEvent">
   <form>
     <div class="form-group">
       <label for="name">Name:<br>

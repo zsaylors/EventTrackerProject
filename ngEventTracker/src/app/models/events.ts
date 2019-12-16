@@ -3,9 +3,9 @@ export class Events {
   name: string;
   location: string;
   description: string;
-  date: Date;
+  date: string;
 
-  constructor(id?: number, name?: string, location?: string, description?: string, date?: Date) {
+  constructor(id?: number, name?: string, location?: string, description?: string, date?: string) {
     this.id = id;
     this.name = name;
     this.location = location;

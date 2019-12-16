@@ -16,8 +16,10 @@ export class EventsComponent implements OnInit {
   selectedEvent: Events = null;
   editEvent: Events = null;
 
+
   // C O N S T R U C T O R
   constructor(private eventService: EventsService) { }
+
 
   // M E T H O D S
   ngOnInit() {
@@ -33,6 +35,10 @@ export class EventsComponent implements OnInit {
         console.error(fail);
       }
     );
+  }
+
+  goHome() {
+    this.loadEvents();
   }
 
   displaySingleEvent(event: Events) {
@@ -83,8 +89,50 @@ export class EventsComponent implements OnInit {
     );
   }
 
-  // daysToNextLaunch(event: Events) {
-  //   const time = new Date().getTime() - new Date(event.date).getTime();
-  //   return time;
-  // }
+  daysToNextLaunch() {
+    let nextEventTime = 0;
+    let nextEvent = null;
+    let time = null;
+    let today = null;
+    const currentDate = new Date();
+    this.events.forEach(element => {
+      const eventDate = new Date(element.date);
+      time = Math.floor((((currentDate.valueOf() - eventDate.valueOf()) * -1) + 1) / (1000 * 60 * 60 * 24)) + 1;
+      if (time === 0) {
+        today = 'today';
+      }
+      if (nextEventTime === 0 && time > 0) {
+        nextEventTime = time;
+        nextEvent = element;
+      }
+      if (nextEventTime >= time && time > 0) {
+        nextEventTime = time;
+        nextEvent = element;
+      }
+    });
+    if (today) {
+      return -1;
+    } else {
+      return nextEventTime;
+    }
+  }
+
+  timeToLaunch(event: Events) {
+    let time = null;
+    const currentDate = new Date();
+    const eventDate = new Date(event.date);
+    time = Math.floor((((currentDate.valueOf() - eventDate.valueOf()) * -1) + 1) / (1000 * 60 * 60 * 24)) + 1;
+
+    if (time === -1) {
+      return 'This launch was yesterday.';
+    } else if (time < 0) {
+      return 'This launch was ' + (time * -1) + ' days ago.';
+    } else if (time === 0) {
+      return 'This launch is today!';
+    } else if (time === 1) {
+      return 'This launch is tomorrow!';
+    } else {
+      return 'This launch is in ' + time + ' days.';
+    }
+  }
 }
